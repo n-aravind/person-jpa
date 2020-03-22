@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\": \"Aravind\",\n        \"last_name\": \"Nareddy\",\n        \"city\": \"Phoenix\"\n}"
+					"raw": "{\n\t\"first_name\": \"Aravind Reddy\",\n        \"last_name\": \"Nareddy\",\n        \"city\": \"Phoenix\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/people",
@@ -88,20 +88,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/people?id=1",
+					"raw": "http://localhost:8080/people/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"people"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
+						"people",
+						"1"
 					]
 				}
 			},
@@ -122,6 +117,36 @@
 					"path": [
 						"people",
 						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPeople",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"first_name\": \"Test 2\",\n        \"last_name\": \"Nareddy\",\n        \"city\": \"Phoenix\"\n    },\n    {\n        \"first_name\": \"Testttttttttttttthsdfhjgsfgshfgjshdgfjshgfkjhasdfjgsdjfgjsgfjsdgfjhsgfhgskfgkafkjag\",\n        \"last_name\": \"Nareddy\",\n        \"city\": \"Phoenix\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/people/batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"people",
+						"batch"
 					]
 				}
 			},

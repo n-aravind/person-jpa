@@ -7,11 +7,12 @@ import java.util.List;
 @RestController
 public class PersonController {
 
-
     private final PersonRepository personRepository;
+    private final PersonService personService;
 
-    public PersonController(PersonRepository personRepository) {
+    public PersonController(PersonRepository personRepository, PersonService personService) {
         this.personRepository = personRepository;
+        this.personService = personService;
     }
 
     @PostMapping(path = "/people")
@@ -37,5 +38,10 @@ public class PersonController {
     @DeleteMapping(path = "people/{id}")
     public void deletePerson(@PathVariable long id){
         personRepository.deleteById(id);
+    }
+
+    @PostMapping(path = "people/batch")
+    public void addPeople(@RequestBody List<Person> personList){
+        personService.addPeople(personList);
     }
 }
