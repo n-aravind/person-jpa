@@ -1,6 +1,5 @@
 package com.example.people;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,31 +7,46 @@ import java.util.List;
 @RestController
 public class PersonController {
 
-    @Autowired
-    PersonRepository personRepository;
+    // TODO use constructor injection.
+    // TODO make it private final
+    private final PersonRepository personRepository;
 
-    @PostMapping(path = "/addPerson")
+    public PersonController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
+    // Not really REST. Should be a POST to
+    // /people
+    @PostMapping(path = "/people")
     public void addPerson(@RequestBody Person person) {
         personRepository.save(person);
     }
 
-    @GetMapping(path = "getPersons")
+    // Not really REST. Should be a GET to
+    // /people
+    @GetMapping(path = "people")
     public List<Person> getPersons() {
         return (List<Person>) personRepository.findAll();
     }
 
-    @GetMapping(path = "getPerson", params = "id")
-    public Person getPerson(@RequestParam long id) {
+    // Not really REST. Should be a GET to
+    // /people/{id}
+    @GetMapping(path = "people/{id}")
+    public Person getPerson(@PathVariable long id) {
         return personRepository.findById(id);
     }
 
-    @PutMapping(path = "updatePerson")
+    // Not really REST. Should be a PUT to
+    // /people
+    @PutMapping(path = "people")
     public void updatePerson(@RequestBody Person person){
         personRepository.save(person);
     }
 
-    @DeleteMapping(path = "deletePerson",params = "id")
-    public void deletePerson(@RequestParam long id){
+    // Not really REST. Should be a DELETE to
+    // /people/{id}
+    @DeleteMapping(path = "people/{id}")
+    public void deletePerson(@PathVariable long id){
         personRepository.deleteById(id);
     }
 }
