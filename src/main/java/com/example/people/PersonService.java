@@ -20,4 +20,20 @@ public class PersonService {
             personRepository.save(person);
         }
     }
+
+    public Person get(long id) {
+        return personRepository.findById(id);
+    }
+
+    public void save(Person person) {
+        personRepository.save(person);
+    }
+
+    public List<Person> findAll() {
+        return (List<Person>) personRepository.findAll();
+    }
+
+    public void deleteById(long id) {
+        personRepository.deleteById(id);
+    }
 }
